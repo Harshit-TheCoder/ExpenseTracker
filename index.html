@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        <div class="balance">
+            <h2>Balance: ₹<span id="balance">0</span></h2>
+            <p>Income: ₹<span id="income">0</span> | Expense: ₹<span id="expense">0</span></p>
+        </div>
+
+        <form id="transactionForm">
+            <input type="text" id="description" placeholder="Description" required>
+            <input type="text" id="amount" placeholder="Amount (+income, -expense)" required>
+            <select name="" id="category">
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Salary">Salary</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+            </select>
+            <button type="submit">Add Transaction</button>
+        </form>
+
+        <ul id="transactionList"></ul>
+
+        <canvas id="chart" width="300" height="300"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
