@@ -1,37 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
-    <link rel="stylesheet" href="index.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: 0, transform: 'translateY(10px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            }
+          },
+          animation: {
+            fadeInUp: 'fadeInUp 0.5s ease-out both'
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
-    <div class="container">
-        <h1>Expense Tracker</h1>
-        <div class="balance">
-            <h2>Balance: ₹<span id="balance">0</span></h2>
-            <p>Income: ₹<span id="income">0</span> | Expense: ₹<span id="expense">0</span></p>
-        </div>
 
-        <form id="transactionForm">
-            <input type="text" id="description" placeholder="Description" required>
-            <input type="text" id="amount" placeholder="Amount (+income, -expense)" required>
-            <select name="" id="category">
-                <option value="Food">Food</option>
-                <option value="Travel">Travel</option>
-                <option value="Salary">Salary</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Other">Other</option>
-            </select>
-            <button type="submit">Add Transaction</button>
-        </form>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
+  <div class="container bg-white w-full max-w-md p-6 rounded-2xl shadow-xl animate-fadeInUp transition-all duration-300">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">💸 Expense Tracker</h1>
 
-        <ul id="transactionList"></ul>
-
-        <canvas id="chart" width="300" height="300"></canvas>
+    <div class="balance mb-6 text-center space-y-1">
+      <h2 class="text-xl font-semibold text-gray-700">
+        Balance: ₹<span id="balance" class="text-blue-600 font-bold">0</span>
+      </h2>
+      <p class="text-sm text-gray-600">
+        <span class="text-green-600 font-medium">Income: ₹<span id="income">0</span></span>
+        |
+        <span class="text-red-600 font-medium">Expense: ₹<span id="expense">0</span></span>
+      </p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="index.js"></script>
+
+    <form id="transactionForm" class="space-y-4 mb-6">
+      <input
+        type="text"
+        id="description"
+        placeholder="Description"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+      />
+      <input
+        type="number"
+        id="amount"
+        placeholder="Amount (+ for income, - for expense)"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+      />
+      <select
+        id="category"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+      >
+        <option value="Food">🍽 Food</option>
+        <option value="Travel">✈️ Travel</option>
+        <option value="Salary">💼 Salary</option>
+        <option value="Shopping">🛍 Shopping</option>
+        <option value="Other">🔧 Other</option>
+      </select>
+      <button
+        type="submit"
+        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-md transition-all duration-300 shadow hover:shadow-md"
+      >
+        ➕ Add Transaction
+      </button>
+    </form>
+
+    <ul id="transactionList" class="space-y-2 mb-6 text-sm text-gray-800 font-medium"></ul>
+
+    <canvas
+      id="chart"
+      width="300"
+      height="300"
+      class="mx-auto mt-4 transition-opacity duration-500 opacity-90 hover:opacity-100"
+    ></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

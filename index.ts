@@ -50,14 +50,20 @@ function renderTransactions(): void {
   list.innerHTML = '';
   transactions.forEach((t: Transaction) => {
     const li: HTMLLIElement = document.createElement('li');
-    li.className = t.amount >= 0 ? 'income' : 'expense';
+    li.className =
+      'flex justify-between items-center px-4 py-2 rounded-md ' +
+      (t.amount >= 0
+        ? 'bg-green-100 text-green-800'
+        : 'bg-red-100 text-red-800');
+
     li.innerHTML = `
-      ${t.description} (${t.category}): ₹${t.amount}
-      <button onclick="removeTransaction(${t.id})">❌</button>
+      <span>${t.description} (${t.category}): ₹${t.amount}</span>
+      <button onclick="removeTransaction(${t.id})" class="ml-4 text-xl hover:text-black">❌</button>
     `;
     list.appendChild(li);
   });
 }
+
 
 function removeTransaction(id: number): void {
   transactions = transactions.filter((t: Transaction) => t.id !== id);
